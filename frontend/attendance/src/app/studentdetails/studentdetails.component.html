@@ -1,0 +1,35 @@
+<div class="container">  
+  <form id="contact" action="" method="post">
+    <h3>Enter your Details</h3>
+    
+    <fieldset>
+      <input placeholder="Registration Number" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Name" type="text" tabindex="1" required autofocus>
+    </fieldset>
+    <fieldset>
+      <input placeholder="Email Address" type="email" tabindex="2" required>
+    </fieldset>
+      
+      <select class="sel">
+        <option value = " ">Semester</option>
+        <option value = "1">I</option>
+        <option value = "2">II</option>
+        <option value = "3">III</option>
+        <option value = "4">IV</option>
+        <option value = "5">V</option>
+        <option value = "6">VI</option>
+        <option value = "7">VII</option>
+        <option value = "8">VIII</option>
+      </select>
+    
+    <fieldset>
+      <input placeholder="Phone Number" type="tel" tabindex="3" required>
+    </fieldset>
+    <fieldset>
+      <button name="submit" type="submit" id="contact-submit" data-submit="...Sending" [routerLink]="['/studentpercentage']">Submit</button>
+    </fieldset>
+    
+  </form>
+</div>

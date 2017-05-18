@@ -1,0 +1,24 @@
+md-card{
+    margin: 2%
+}
+
+.top{
+    align-self: center;
+    background-color: burlywood
+}
+
+.example-icon {
+  padding: 0 14px;
+}
+
+.example-spacer {
+  flex: 1 1 auto;
+}
+
+.tool{
+    width: 100%
+}
+
+md-card-subtitle{
+    font-size: 30px;
+}

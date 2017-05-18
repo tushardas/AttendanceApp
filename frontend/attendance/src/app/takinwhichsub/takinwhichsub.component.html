@@ -1,0 +1,14 @@
+<md-toolbar class="tool" color="primary">
+  <span>Classes Today!!!</span>
+
+</md-toolbar>
+
+
+<md-card *ngFor="let message of messages" [routerLink]="['/attendancetaken']">
+    <md-card-subtitle> {{message.name}}  </md-card-subtitle>
+    <hr/>
+    <md-card-content> <br/><br/>{{message.sem}} Semester <br/>
+      Total Class: {{message.total}}
+      </md-card-content>
+</md-card>
+  
