@@ -1,22 +1,20 @@
-<md-card *ngFor="let res of title" [routerLink]="['/calendarview']">
+<md-card *ngFor="let res of title">
     <md-card-subtitle>
-        {{res.subject}}
+        {{res.subject}} <span class="right">{{res.name}}</span>
     </md-card-subtitle>
     <md-card-content>
-        {{res.name}}
+
     </md-card-content>
 
     <section class="example-section">
-      <md-progress-bar
-          class="example-margin"
-          [value]="res.perc"
-          [color]= "color(res)" >
-      </md-progress-bar>
-    {{res.perc}}%
-
+        <md-progress-bar class="example-margin" [value]="res.perc" [color]="color(res)">
+        </md-progress-bar>
+        {{res.perc}}%
     </section>
-    <br/><br/>
-Total Attended: {{res.attended}} <br/><br/>
-    Total Class : {{res.class}}
- 
-<router-outlet></router-outlet>
+    <br/>
+    <md-card-content>
+        Total Attended: {{res.attended}} <span class="right"> Total Class : {{res.class}}</span>
+    </md-card-content>
+
+
+    <router-outlet></router-outlet>

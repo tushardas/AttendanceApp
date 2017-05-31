@@ -6,7 +6,8 @@ import { Http, RequestOptions, Headers } from "@angular/http";
 import 'rxjs/add/operator/map';
 import 'rxjs';
 import 'rxjs/add/operator/toPromise';
-import { Observable} from 'rxjs'
+import { Observable} from 'rxjs';
+import { API } from "../models/api";
 @Component({
   selector: 'app-takinattendance',
   templateUrl: './takinattendance.component.html',
@@ -29,13 +30,13 @@ export class TakinattendanceComponent implements OnInit {
         let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
         console.log('sddfsd');
-        this.http.post('http://192.168.43.55:8081/submit', bodyString, options)
+        this.http.post(API.submit, bodyString, options)
         .toPromise() // ...using post request
     }   
 
   ngOnInit() {
 
-    this.http.get('http://192.168.43.55:8081/attendancetaken')
+    this.http.get(API.attendancetaken)
       .subscribe(res => {
         this.det = res.json();
         console.log(JSON.stringify(this.det));

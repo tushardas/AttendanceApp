@@ -25,3 +25,8 @@ md-card{
 md-card{
     margin: 2%
 }
+
+.right {
+    float: right;
+    width: parent*90%;
+}

@@ -1,45 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { MdCard, MdList } from '@angular/material';
 import { Params, ActivatedRoute } from '@angular/router';
-import { Http } from "@angular/http";
+import { Http, RequestOptions, URLSearchParams } from "@angular/http";
 //import { StudperService } from "../services/studper.service";
 import { studper } from "../models/studper";
+import { API } from "app/models/api";
 @Component({
   selector: 'app-studentpercentage',
   templateUrl: './studentpercentage.component.html',
-  styleUrls: ['./studentpercentage.component.css'],
-  //providers: [studper]
+  styleUrls: ['./studentpercentage.component.css']
 
 })
 
 export class StudentpercentageComponent implements OnInit {
-  constructor(private http: Http) {
+  constructor(private http: Http, private route:ActivatedRoute) {
 
   }
 
   title = []
-  // title = [{
-  //   subject: "CN-II",
-  //   name: "Tanuja Ma'am",
-  //   perc: 70
-  // },
-  // {
-  //   subject: "USP",
-  //   name: "Dharmendar Sir",
-  //   perc: 79
-  // },
-  // {
-  //   subject: "SS",
-  //   name: "Kiran Sir",
-  //   perc: 90,
-  //   value: 90
-  // },
-  // {
-  //   subject: "DM",
-  //   name: "Champa Ma'am",
-  //   perc: 10
-  // }];
-
   color(res: any) {
     if (res.perc < 75)
       return "warn"
@@ -49,9 +27,18 @@ export class StudentpercentageComponent implements OnInit {
       return "primary"
   }
   ngOnInit() {
-    this.http.get('http://192.168.43.55:8081/studentperc')
+    let id: string = this.route.snapshot.params['regno'];
+    console.log(id);
+    let params: URLSearchParams = new URLSearchParams();
+    params.set('regno', id);
+    let requestOptions = new RequestOptions();
+    requestOptions.search = params;
+    this.http.get(API.studentperc, requestOptions)
       .subscribe(res =>
         this.title = res.json())
+    console.log(JSON.stringify(this.title));
   }
+
+
 
 }

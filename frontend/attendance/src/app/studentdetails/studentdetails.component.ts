@@ -12,4 +12,8 @@ export class StudentdetailsComponent implements OnInit {
   ngOnInit() {
   }
 
+  submit(){
+    
+  }
+
 }

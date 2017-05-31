@@ -70,6 +70,10 @@
   optionalDependencies:
     node-sass "^4.3.0"
 
+"@angular/common@2.4.10":
+  version "2.4.10"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-2.4.10.tgz#a3a682d2228fa30ec23dd0eb57c8e887fba26997"
+
 "@angular/common@^4.0.0":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-4.1.1.tgz#088a13a70c5390c5c9613aa05754b74ee18e1afb"
@@ -86,9 +90,17 @@
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-4.1.1.tgz#fc62459056465f624c3ac6f68dadcc9ba74c4ae0"
 
+"@angular/core@2.4.10":
+  version "2.4.10"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-2.4.10.tgz#0b8320a65065965d998645b1f5cd3cf769b441ea"
+
 "@angular/core@^4.0.0":
   version "4.1.1"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-4.1.1.tgz#1230645c842f8a6a050403d4947f982e7ef70c60"
+
+"@angular/forms@2.4.10":
+  version "2.4.10"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-2.4.10.tgz#062133aaade1f3b3c962f1593208c541b622fd06"
 
 "@angular/forms@^4.0.0":
   version "4.1.1"
@@ -133,9 +145,30 @@
     magic-string "^0.19.0"
     source-map "^0.5.6"
 
+"@types/fullcalendar@2.7.38":
+  version "2.7.38"
+  resolved "https://registry.yarnpkg.com/@types/fullcalendar/-/fullcalendar-2.7.38.tgz#dd08c35b090cf787214658bd2a453ac9c191d896"
+  dependencies:
+    "@types/jquery" "*"
+    moment ">=2.14.0"
+
 "@types/jasmine@2.5.38":
   version "2.5.38"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.5.38.tgz#a4379124c4921d4e21de54ec74669c9e9b356717"
+
+"@types/jquery@*", "@types/jquery@2.0.41":
+  version "2.0.41"
+  resolved "https://registry.yarnpkg.com/@types/jquery/-/jquery-2.0.41.tgz#b87ba051011f99edbe586d8f97282e7786e01a6d"
+
+"@types/moment@2.13.0":
+  version "2.13.0"
+  resolved "https://registry.yarnpkg.com/@types/moment/-/moment-2.13.0.tgz#604ebd189bc3bc34a1548689404e61a2a4aac896"
+  dependencies:
+    moment "*"
+
+"@types/node@7.0.8":
+  version "7.0.8"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-7.0.8.tgz#25e4dd804b630c916ae671233e6d71f6ce18124a"
 
 "@types/node@^6.0.46", "@types/node@~6.0.60":
   version "6.0.72"
@@ -215,6 +248,19 @@ alphanum-sort@^1.0.1, alphanum-sort@^1.0.2:
 amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
+
+angular2-fullcalendar@^1.0.19:
+  version "1.0.19"
+  resolved "https://registry.yarnpkg.com/angular2-fullcalendar/-/angular2-fullcalendar-1.0.19.tgz#8e725bd7c0a781d06d41730f78f39f6cd78c59af"
+  dependencies:
+    "@angular/common" "2.4.10"
+    "@angular/core" "2.4.10"
+    "@angular/forms" "2.4.10"
+    "@types/fullcalendar" "2.7.38"
+    "@types/jquery" "2.0.41"
+    "@types/moment" "2.13.0"
+    "@types/node" "7.0.8"
+    fullcalendar "3.2.0"
 
 ansi-align@^1.1.0:
   version "1.1.0"
@@ -1852,6 +1898,13 @@ fstream@^1.0.0, fstream@^1.0.10, fstream@^1.0.2:
     mkdirp ">=0.5 0"
     rimraf "2"
 
+fullcalendar@3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/fullcalendar/-/fullcalendar-3.2.0.tgz#0718964c5edacc45e7204ad797a56bcab535068b"
+  dependencies:
+    jquery "2 - 3"
+    moment "^2.9.0"
+
 function-bind@^1.0.2:
   version "1.1.0"
   resolved "https://registry.yarnpkg.com/function-bind/-/function-bind-1.1.0.tgz#16176714c801798e4e8f2cf7f7529467bb4a5771"
@@ -1984,6 +2037,10 @@ graceful-fs@^4.1.11, graceful-fs@^4.1.2, graceful-fs@^4.1.6:
 "graceful-readlink@>= 1.0.0":
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/graceful-readlink/-/graceful-readlink-1.0.1.tgz#4cafad76bc62f02fa039b2f94e9a3dd3a391a725"
+
+hammerjs@^2.0.8:
+  version "2.0.8"
+  resolved "https://registry.yarnpkg.com/hammerjs/-/hammerjs-2.0.8.tgz#04ef77862cff2bb79d30f7692095930222bf60f1"
 
 handle-thing@^1.2.4:
   version "1.2.5"
@@ -2587,6 +2644,10 @@ jodid25519@^1.0.0:
   dependencies:
     jsbn "~0.1.0"
 
+"jquery@2 - 3":
+  version "3.2.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.2.1.tgz#5c4d9de652af6cd0a770154a631bba12b015c787"
+
 js-base64@^2.1.5, js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.1.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.1.9.tgz#f0e80ae039a4bd654b5f281fc93f04a914a7fcce"
@@ -3057,6 +3118,10 @@ mkdirp@0.5.x, "mkdirp@>=0.5 0", mkdirp@^0.5.0, mkdirp@^0.5.1, mkdirp@~0.5.0, mkd
   resolved "https://registry.yarnpkg.com/mkdirp/-/mkdirp-0.5.1.tgz#30057438eac6cf7f8c4767f38648d6697d75c903"
   dependencies:
     minimist "0.0.8"
+
+moment@*, moment@>=2.14.0, moment@^2.9.0:
+  version "2.18.1"
+  resolved "https://registry.yarnpkg.com/moment/-/moment-2.18.1.tgz#c36193dd3ce1c2eed2adb7c802dbbc77a81b1c0f"
 
 ms@0.7.1:
   version "0.7.1"
@@ -4768,6 +4833,10 @@ trim-newlines@^1.0.0:
 trim-right@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/trim-right/-/trim-right-1.0.1.tgz#cb2e1203067e0c8de1f614094b9fe45704ea6003"
+
+ts-md5@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/ts-md5/-/ts-md5-1.2.0.tgz#c30b385261bd27962f754509675f0e9578810569"
 
 ts-node@~2.0.0:
   version "2.0.0"

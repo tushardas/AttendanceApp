@@ -1,0 +1,101 @@
+<div class="signup center-block jumbotron">
+  <h3>Signup</h3>
+  <md-tab-group>
+    <md-tab label="Student">
+
+      <form role="form" (submit)="signup(username.value, password.value,regno.value,name.value,email.value,contact.value,department.value,semester.value)">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" #username class="form-control" id="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" #password class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="regno">Register Number</label>
+          <input type="regno" #regno class="form-control" id="regno" placeholder="Regno">
+        </div>
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input type="text" #name class="form-control" id="name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" #email class="form-control" id="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="contact">Contact Number</label>
+          <input type="contact" #contact class="form-control" id="contact" placeholder="contact">
+        </div>
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select #department id="department">
+  <option value="1">Computer Science</option>
+</select>
+        </div>
+        <div class="form-group">
+          <label for="semester">Semester</label>
+          <select #semester id="Semester">
+  <option value="1">1</option>
+  <option value="2">2</option>
+  <option value="3">3</option>
+  <option value="4">4</option>
+  <option value="5">5</option>
+  <option value="6">6</option>
+  <option value="7">7</option>
+  <option value="8">8</option>
+</select>
+        </div>
+        <button type="submit" class="btn btn-default">Submit</button>
+        <a [routerLink]="['/loginas']">Click here to Login</a>
+      </form>
+    </md-tab>
+
+
+
+
+
+
+
+
+
+    <md-tab label="Teacher">
+
+      <form role="form" (teachersignup)="signup(username.value, password.value,teacherid.value,name.value,email.value,department.value)">
+        <div class="form-group">
+          <label for="username">Username</label>
+          <input type="text" #username class="form-control" id="username" placeholder="Username" required>
+        </div>
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" #password class="form-control" id="password" placeholder="Password">
+        </div>
+        <div class="form-group">
+          <label for="teacherid">Teacher Id</label>
+          <input type="teacherid" #teacherid class="form-control" id="teacherid" placeholder="TeacherId">
+        </div>
+        <div class="form-group">
+          <label for="Name">Name</label>
+          <input type="text" #name class="form-control" id="name" placeholder="Name">
+        </div>
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" #email class="form-control" id="email" placeholder="Email">
+        </div>
+        <div class="form-group">
+          <label for="department">Department</label>
+          <select #department id="department">
+  <option value="1">Computer Science</option>
+  <option value="2">Information Science</option>
+  <option value="3">Electronics and Communication Engineering</option>
+  <option value="4">Electrical and Electronics Engineering</option>
+</select>
+        </div>
+        
+        <button type="submit" class="btn btn-default">Submit</button>
+        <a [routerLink]="['/loginas']">Click here to Login</a>
+      </form>
+    </md-tab>
+  </md-tab-group>
+</div>
