@@ -3,6 +3,8 @@ import { md5 } from "md5";
 import { RequestOptions, Http, Headers } from "@angular/http";
 import { API } from "app/models/api";
 import { Router } from "@angular/router";
+import { NgForm } from "@angular/forms"; 
+import { StudentsService } from "../services/studentservice/students.service";
 
 @Component({
   selector: 'app-login',
@@ -23,7 +25,7 @@ export class LoginComponent implements OnInit {
       user: username,
       password: password
     }
-    let bodyString = JSON.stringify(this.title); // Stringify payload
+        let bodyString = JSON.stringify(this.title); // Stringify payload
         let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
         this.http.post(API.login, bodyString, options)
@@ -31,7 +33,7 @@ export class LoginComponent implements OnInit {
           this.result = JSON.parse(res.text())[0];
           console.log(this.result);
           if(this.result.user === this.title.user){
-            
+            StudentsService.putdetails(this.result.regno);
             this.router.navigate(['studentpercentage' , this.result.regno]);
           }
           else{
