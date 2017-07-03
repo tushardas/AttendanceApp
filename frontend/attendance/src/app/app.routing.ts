@@ -10,6 +10,7 @@ import { SignupComponent } from "./signup/signup.component";
 import { LoginComponent } from "./login/login.component";
 import { LoginAsComponent } from "./login-as/login-as.component";
 import { LogteacherComponent } from "./logteacher/logteacher.component";
+import { AddsubjectComponent } from "./addsubject/addsubject.component";
 const appRoutes: Routes = [
     {
       path: 'studentpercentage/:regno',
@@ -29,7 +30,7 @@ const appRoutes: Routes = [
       component: TakinattendanceComponent 
     },
     {
-      path: 'subjecttaken',
+      path: 'subjecttaken/:teacherid',
       component: TakinwhichsubComponent
     },
     {
@@ -41,7 +42,7 @@ const appRoutes: Routes = [
       component: LogteacherComponent
     },
     {
-      path: 'teacherdetails',
+      path: 'teacherdetails/:teachername',
       component: TeacherdetailsComponent
     },
     {
@@ -51,6 +52,10 @@ const appRoutes: Routes = [
     {
       path: 'loginas',
       component: LoginAsComponent
+    },
+    {
+      path: 'addsubject',
+      component: AddsubjectComponent
     }
 ]
 
