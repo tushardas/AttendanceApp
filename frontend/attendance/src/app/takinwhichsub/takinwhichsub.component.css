@@ -22,3 +22,11 @@ md-card{
 md-card-subtitle{
     font-size: 30px;
 }
+
+.sem{
+    align-content: center
+}
+
+.total{
+    align-content: right
+}

@@ -1,8 +1,10 @@
 <md-card *ngFor="let message of messages" [routerLink]="['/attendancetaken']">
     <md-card-subtitle> {{message.name}}  </md-card-subtitle>
-    <hr/>
-    <md-card-content> <br/><br/>{{message.sem}} Semester <br/>
-      Total Class: {{message.total}}
+    
+    <md-card-content> {{message.sem}} Semester
+      <br/>Total Class: {{message.total}}
       </md-card-content>
 </md-card>
-  
+
+<br/><br/><br/>
+<i class="material-icons" (click) = "add()">add_circle</i> Add another course
