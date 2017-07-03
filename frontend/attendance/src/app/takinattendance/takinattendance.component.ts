@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { StudentsService } from "../services/students.service";
 import { MdSnackBar, MdSnackBarRef, SimpleSnackBar } from "@angular/material";
 import { details } from "../models/studentdetails";
 import { Http, RequestOptions, Headers } from "@angular/http";
@@ -8,15 +7,17 @@ import 'rxjs';
 import 'rxjs/add/operator/toPromise';
 import { Observable} from 'rxjs';
 import { API } from "../models/api";
+import { Router } from "@angular/router";
+import { TeacherserviceService } from "../services/teacherservice/teacherservice.service";
+
 @Component({
   selector: 'app-takinattendance',
   templateUrl: './takinattendance.component.html',
   styleUrls: ['./takinattendance.component.css'],
-  providers: [StudentsService]
 })
 export class TakinattendanceComponent implements OnInit {
 
-  constructor(private studentservice: StudentsService, private http:Http) { 
+  constructor(private http:Http , private router:Router) { 
 
   }
 
@@ -29,7 +30,6 @@ export class TakinattendanceComponent implements OnInit {
         let bodyString = JSON.stringify(this.det); // Stringify payload
         let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
         let options = new RequestOptions({ headers: headers }); // Create a request option
-        console.log('sddfsd');
         this.http.post(API.submit, bodyString, options)
         .toPromise() // ...using post request
     }   
@@ -41,8 +41,10 @@ export class TakinattendanceComponent implements OnInit {
         this.det = res.json();
         console.log(JSON.stringify(this.det));
   })
-//console.log(res.json());
+  }
       
+  cancel(){
+    this.router.navigate(['subjecttaken',TeacherserviceService.getdetails]);
   }
 
 }
