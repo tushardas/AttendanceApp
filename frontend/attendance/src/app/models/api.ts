@@ -1,5 +1,3 @@
-import { domain } from "./domain";
-
 export class API{
    public static DomainUrl : string = 'http://localhost:8081'
 
@@ -29,5 +27,17 @@ export class API{
 
     public static get teachersignup(): string {
         return API.DomainUrl + '/teachersignup';
+    }
+      
+    public static get logteacher(): string {
+        return API.DomainUrl + '/logteacher';
+    }
+
+    public static get teacherdetails(): string {
+        return API.DomainUrl + '/teacherdetails';
+    }
+
+    public static get addsub(): string {
+        return API.DomainUrl + '/addsub';
     }
 }
