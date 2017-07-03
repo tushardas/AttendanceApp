@@ -1,10 +1,9 @@
-export class details{
-    
-    regno:String;
-    name:String;
+export class details{    
+    regno:string;
+    name:string;
     sem:number;
-    phone:String;
-    email:String;
+    phone:string;
+    email:string;
     dept:number;
     dummy: boolean
 
