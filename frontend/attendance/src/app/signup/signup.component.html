@@ -62,30 +62,30 @@
 
     <md-tab label="Teacher">
 
-      <form role="form" (teachersignup)="signup(username.value, password.value,teacherid.value,name.value,email.value,department.value)">
+      <form role="form" (submit)="tsignup(tusername.value, tpassword.value,tteacherid.value,tname.value,temail.value,tdepartment.value)">
         <div class="form-group">
-          <label for="username">Username</label>
-          <input type="text" #username class="form-control" id="username" placeholder="Username" required>
+          <label for="tusername">Username</label>
+          <input type="text" #tusername class="form-control" id="tusername" placeholder="Username" required>
         </div>
         <div class="form-group">
-          <label for="password">Password</label>
-          <input type="password" #password class="form-control" id="password" placeholder="Password">
+          <label for="tpassword">Password</label>
+          <input type="password" #tpassword class="form-control" id="tpassword" placeholder="Password">
         </div>
         <div class="form-group">
-          <label for="teacherid">Teacher Id</label>
-          <input type="teacherid" #teacherid class="form-control" id="teacherid" placeholder="TeacherId">
+          <label for="tteacherid">Teacher Id</label>
+          <input type="teacherid" #tteacherid class="form-control" id="tteacherid" placeholder="TeacherId">
         </div>
         <div class="form-group">
           <label for="Name">Name</label>
-          <input type="text" #name class="form-control" id="name" placeholder="Name">
+          <input type="text" #tname class="form-control" id="tname" placeholder="Name">
         </div>
         <div class="form-group">
           <label for="email">Email</label>
-          <input type="text" #email class="form-control" id="email" placeholder="Email">
+          <input type="text" #temail class="form-control" id="temail" placeholder="Email">
         </div>
         <div class="form-group">
           <label for="department">Department</label>
-          <select #department id="department">
+          <select #tdepartment id="tdepartment">
   <option value="1">Computer Science</option>
   <option value="2">Information Science</option>
   <option value="3">Electronics and Communication Engineering</option>

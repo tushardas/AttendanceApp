@@ -2,16 +2,17 @@ import { Component, OnInit } from '@angular/core';
 import { md5 } from "md5";
 import { RequestOptions, Http, Headers } from "@angular/http";
 import { API } from "app/models/api";
-import { RES } from "app/models/result";
 
+import { Router } from "@angular/router";
 @Component({
   selector: 'app-signup',
   templateUrl: './signup.component.html',
   styleUrls: ['./signup.component.css']
 })
 export class SignupComponent implements OnInit {
+  
 
-  constructor(private http: Http) { }
+  constructor(private http: Http , private router:Router) { }
   user:any
   ngOnInit() {
   }
@@ -41,7 +42,9 @@ export class SignupComponent implements OnInit {
         response =>{
           this.res = JSON.parse(response.text())[0];
           console.log(this.res);
-            this.result = this.res.code;
+            if(this.res.code === 1){
+              this.router.navigate(['loginas']);
+            }
         })
      // ...using post request
   }
@@ -49,8 +52,8 @@ export class SignupComponent implements OnInit {
 
 
 
-  teachersignup(username: any, password: any,teacherid:any,name:any,email:any,department:number) {
-    password = md5(password);
+  tsignup(username: any, password: any,teacherid:any,name:any,email:any,department:number) {
+    //password = md5(password);
     this.user = {
       username: username,
       password: password,
@@ -72,6 +75,9 @@ export class SignupComponent implements OnInit {
           this.res = JSON.parse(response.text())[0];
           console.log(this.res);
             this.result = this.res.code;
+            if(this.result === 1){
+              this.router.navigate(['loginas'])
+            }
         })
      // ...using post request
   }
