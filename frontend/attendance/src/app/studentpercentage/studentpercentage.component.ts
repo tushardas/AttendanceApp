@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MdCard, MdList } from '@angular/material';
-import { Params, ActivatedRoute } from '@angular/router';
+import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Http, RequestOptions, URLSearchParams } from "@angular/http";
 //import { StudperService } from "../services/studper.service";
 import { studper } from "../models/studper";
@@ -13,11 +13,11 @@ import { API } from "app/models/api";
 })
 
 export class StudentpercentageComponent implements OnInit {
-  constructor(private http: Http, private route:ActivatedRoute) {
+  constructor(private http: Http, private route:ActivatedRoute, private router:Router) {
 
   }
 
-  title = []
+  title:any
   color(res: any) {
     if (res.perc < 75)
       return "warn"
@@ -28,7 +28,6 @@ export class StudentpercentageComponent implements OnInit {
   }
   ngOnInit() {
     let id: string = this.route.snapshot.params['regno'];
-    console.log(id);
     let params: URLSearchParams = new URLSearchParams();
     params.set('regno', id);
     let requestOptions = new RequestOptions();
@@ -36,9 +35,10 @@ export class StudentpercentageComponent implements OnInit {
     this.http.get(API.studentperc, requestOptions)
       .subscribe(res =>
         this.title = res.json())
-    console.log(JSON.stringify(this.title));
   }
 
-
-
+  teacher(){
+    console.log(JSON.stringify(this.title.name))
+    this.router.navigate(['/teacherdetails',this.title.name])
+  } 
 }
