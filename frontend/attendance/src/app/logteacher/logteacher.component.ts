@@ -4,7 +4,7 @@ import { API } from "../models/api";
 import { Router } from "@angular/router";
 import { md5 } from "md5";
 import { TeacherserviceService } from "../services/teacherservice/teacherservice.service";
-
+import { MdSnackBar } from "@angular/material";
 @Component({
   selector: 'app-logteacher',
   templateUrl: './logteacher.component.html',
@@ -12,8 +12,7 @@ import { TeacherserviceService } from "../services/teacherservice/teacherservice
 })
 export class LogteacherComponent implements OnInit {
 
-  constructor(private http:Http, private router:Router
-  ) { }
+  constructor(private http:Http, private router:Router, public snackBar:MdSnackBar  ) { }
 
   ngOnInit() {
     console.log(md5("5a1d589b6e125ecdc8cc469d704d7f10"));
@@ -35,10 +34,15 @@ title: any;
           console.log(this.result);
           if(this.result.user === this.title.user){
             TeacherserviceService.putdetails(this.result.teacherid);
+            this.snackBar.open("Login Successfull..","" ,{
+                duration: 2000,
+              });
             this.router.navigate(['subjecttaken' , this.result.teacherid]);
           }
           else{
-            console.log('error');
+            this.snackBar.open("Username and Password doesn't match!!","" ,{
+                duration: 2000,
+              });
           }
         })
   

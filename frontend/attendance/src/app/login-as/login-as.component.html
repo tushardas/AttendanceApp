@@ -1,16 +1,18 @@
-<md-card>
-  <md-list>
-    <md-card [routerLink]="['/login']">
-      Login As Student
-    </md-card>
-    <md-card [routerLink]="['/logteacher']">
-      Login As Teacher
-    </md-card>
-    <md-card [routerLink]="['/signup']">
-      SignUp
-    </md-card>
-  </md-list>
-</md-card>
+<md-list>
+    <md-list-item [routerLink]="['/login']">
+        <img src = "https://d30y9cdsu7xlg0.cloudfront.net/png/35778-200.png" height="50px" width="50px"/>Login As Student
+    </md-list-item><hr/>
+    <md-list-item class="color" [routerLink]="['/logteacher']">
+        <img src = "http://www.newdesignfile.com/postpic/2015/09/teacher-icons-free_302322.jpg" height="50px" width="50px"/>Login As Teacher
+    </md-list-item><hr/>
+    <md-list-item [routerLink]="['/signup']">
+        <img src = "http://www.rez-points.com/wp-content/uploads/2013/02/signup-icon.png" height="50px" width="50px"/>SignUp
+    </md-list-item>
+</md-list>
+
+
+
+
 
 
 

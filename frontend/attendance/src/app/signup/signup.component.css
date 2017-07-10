@@ -1,4 +1,19 @@
 .signup {
-  width: 95%;
-  margin: 4px;
+  width: 98%;
+  margin: 2%;
+}
+
+md-tab{
+  margin: 3%;
+  width: 50%
+}
+
+md-input-container {
+    width: 100%;
+    margin: 1%
+}
+
+md-chip {
+  width: 40%;
+  text-align: center
 }

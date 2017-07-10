@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { md5 } from "md5";
 import { RequestOptions, Http, Headers } from "@angular/http";
 import { API } from "app/models/api";
-
+import {MdSnackBar} from '@angular/material';
 import { Router } from "@angular/router";
 @Component({
   selector: 'app-signup',
@@ -12,7 +12,7 @@ import { Router } from "@angular/router";
 export class SignupComponent implements OnInit {
   
 
-  constructor(private http: Http , private router:Router) { }
+  constructor(private http: Http , private router:Router, public snackBar: MdSnackBar) { }
   user:any
   ngOnInit() {
   }
@@ -33,25 +33,31 @@ export class SignupComponent implements OnInit {
 
     
     let body = JSON.stringify(this.user);
-    console.log(this.user);
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers }); // Create a request option
-    console.log(body);
     this.http.post(API.signup, body, options)
       .subscribe(
         response =>{
           this.res = JSON.parse(response.text())[0];
-          console.log(this.res);
             if(this.res.code === 1){
+              this.snackBar.open("Signup Successfull..","" ,{
+                duration: 2000,
+              });
               this.router.navigate(['loginas']);
+            }
+            else{
+              console.log("Snackbar shud open")
+              this.snackBar.open("Signup Unsuccessfull.. Try Another username","" ,{
+                duration: 2000,
+              });
             }
         })
      // ...using post request
   }
 
 
-
-
+  decider :boolean = true;
+  chip : string = 'primary';
   tsignup(username: any, password: any,teacherid:any,name:any,email:any,department:number) {
     //password = md5(password);
     this.user = {
@@ -65,20 +71,37 @@ export class SignupComponent implements OnInit {
 
     
     let body = JSON.stringify(this.user);
-    console.log(this.user);
     let headers = new Headers({ 'Content-Type': 'application/json' }); // ... Set content type to JSON
     let options = new RequestOptions({ headers: headers }); // Create a request option
-    console.log(body);
     this.http.post(API.teachersignup, body, options)
       .subscribe(
         response =>{
           this.res = JSON.parse(response.text())[0];
-          console.log(this.res);
             this.result = this.res.code;
             if(this.result === 1){
+              this.snackBar.open("Signup Successfull..","" ,{
+                duration: 2000,
+              });
               this.router.navigate(['loginas'])
             }
+            else{
+              this.snackBar.open("Signup Unsuccessfull.. Try Another username","" ,{
+                duration: 2000,
+              });
+            }   
         })
      // ...using post request
+  }
+
+  chipselect(num: number){
+    if(num == 1){
+      this.chip = 'accent'
+      this.decider = true;
+    }
+
+    if(num == 2){
+      this.chip = 'primary'
+      this.decider = false;
+    }
   }
 }

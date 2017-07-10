@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MdCard, MdList } from '@angular/material';
 import { Params, ActivatedRoute, Router } from '@angular/router';
 import { Http, RequestOptions, URLSearchParams } from "@angular/http";
-//import { StudperService } from "../services/studper.service";
 import { studper } from "../models/studper";
+import { MdCardModule } from "@angular/material";
 import { API } from "app/models/api";
 @Component({
   selector: 'app-studentpercentage',
@@ -36,9 +36,4 @@ export class StudentpercentageComponent implements OnInit {
       .subscribe(res =>
         this.title = res.json())
   }
-
-  teacher(){
-    console.log(JSON.stringify(this.title.name))
-    this.router.navigate(['/teacherdetails',this.title.name])
-  } 
 }

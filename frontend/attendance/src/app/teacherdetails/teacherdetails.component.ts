@@ -10,11 +10,11 @@ import { API } from "app/models/api";
 export class TeacherdetailsComponent implements OnInit {
 
   constructor(private route:ActivatedRoute, private http:Http) { }
-  title:any
+  title :any = []
   ngOnInit() {
 
     let teachername: string = this.route.snapshot.params['name'];
-    console.log(teachername);
+    console.log("name = " , teachername);
     let params: URLSearchParams = new URLSearchParams();
     params.set('name', teachername);
     let requestOptions = new RequestOptions();

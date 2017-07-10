@@ -2,6 +2,9 @@ md-card{
     margin: 2%
 }
 
+md-card-subtitle{
+    margin: 2%
+}
 .top{
     align-self: center;
     background-color: burlywood
@@ -23,10 +26,22 @@ md-card-subtitle{
     font-size: 30px;
 }
 
-.sem{
-    align-content: center
+.right {
+    float: right;
+    width: parent*90%;
 }
 
-.total{
-    align-content: right
+.add-button
+{
+    background-color: mediumturquoise;
+    align-content: center;
+    text-align: center;
+    color: white;
+    padding:4px;
+    margin-top: 20px;
+    vertical-align: middle;
+    margin-bottom:0px; 
+    position: absolute;
+    width: 100%;
+    bottom: 0;    
 }

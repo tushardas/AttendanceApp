@@ -1,6 +1,6 @@
 <md-card *ngFor="let res of title">
     <md-card-subtitle>
-        {{res.subject}} <span class="right" (click) = "teacher()">{{res.name}}</span>
+        {{res.subject}} <span class="right" [routerLink] = "['/teacherdetails',res.id]">{{res.name}}</span>
     </md-card-subtitle>
 
     <section class="example-section">

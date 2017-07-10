@@ -1,7 +1,6 @@
 import { ModuleWithProviders } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { StudentpercentageComponent } from './studentpercentage/studentpercentage.component'
-import { CalendarviewComponent } from "./calendarview/calendarview.component";
 import { TakinattendanceComponent } from "./takinattendance/takinattendance.component";
 import { TakinwhichsubComponent } from "./takinwhichsub/takinwhichsub.component";
 import { StudentdetailsComponent } from "./studentdetails/studentdetails.component";
@@ -11,22 +10,19 @@ import { LoginComponent } from "./login/login.component";
 import { LoginAsComponent } from "./login-as/login-as.component";
 import { LogteacherComponent } from "./logteacher/logteacher.component";
 import { AddsubjectComponent } from "./addsubject/addsubject.component";
+import { AppComponent } from "./app.component";
 const appRoutes: Routes = [
     {
       path: 'studentpercentage/:regno',
       component: StudentpercentageComponent
       
     },
-    // {
-    //   path: 'calendarview',
-    //   component: CalendarviewComponent
-    // },
     {
       path: 'signup',
       component: SignupComponent
     },
     {
-      path: 'attendancetaken',
+      path: 'attendancetaken/:cid',
       component: TakinattendanceComponent 
     },
     {
@@ -42,7 +38,7 @@ const appRoutes: Routes = [
       component: LogteacherComponent
     },
     {
-      path: 'teacherdetails/:teachername',
+      path: 'teacherdetails/:name',
       component: TeacherdetailsComponent
     },
     {
@@ -56,6 +52,10 @@ const appRoutes: Routes = [
     {
       path: 'addsubject',
       component: AddsubjectComponent
+    },
+    {
+      path: '',
+      component: AppComponent
     }
 ]
 

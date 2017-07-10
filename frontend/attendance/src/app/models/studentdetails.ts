@@ -6,5 +6,4 @@ export class details{
     email:string;
     dept:number;
     dummy: boolean
-
 }

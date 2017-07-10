@@ -1,18 +1,9 @@
 <md-toolbar color="primary">
-    <span>E-Register</span>
+  <i class="material-icons" [routerLink]="['/']">home</i>
+    <p style="text-align:center;margin-left:60px">E-Register</p>
     <span class="example-spacer"></span>
-    <md-icon [mdMenuTriggerFor]="menu">more_vert</md-icon>
+    <md-icon (click)="logout()">exit_to_app</md-icon>
 </md-toolbar>
 
 
-<md-menu #menu="mdMenu">
-  <button md-menu-item>
-    <md-icon>account_circle</md-icon>
-    <span>Profile</span>
-  </button>
-  <button md-menu-item (click)="logout()">
-    <md-icon>exit_to_app</md-icon>
-    <span>Logout</span>
-  </button>
-</md-menu>
 <router-outlet></router-outlet>

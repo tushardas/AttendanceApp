@@ -5,7 +5,7 @@ import { API } from "app/models/api";
 import { Router } from "@angular/router";
 import { NgForm } from "@angular/forms"; 
 import { StudentsService } from "../services/studentservice/students.service";
-
+import {MdSnackBar} from '@angular/material';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -13,7 +13,7 @@ import { StudentsService } from "../services/studentservice/students.service";
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private http: Http, public router: Router) { }
+  constructor(private http: Http, public router: Router, public snackBar:MdSnackBar) { }
 
   ngOnInit() {  
   }
@@ -34,10 +34,15 @@ export class LoginComponent implements OnInit {
           console.log(this.result);
           if(this.result.user === this.title.user){
             StudentsService.putdetails(this.result.regno);
+            this.snackBar.open("Login Successfull..","" ,{
+                duration: 2000,
+              });
             this.router.navigate(['studentpercentage' , this.result.regno]);
           }
           else{
-            console.log('error');
+            this.snackBar.open("Username and Password doesn't match!!","" ,{
+                duration: 2000,
+              });
           }
         })
   

@@ -1,5 +1,5 @@
 export class API{
-   public static DomainUrl : string = 'http://localhost:8081'
+   public static DomainUrl : string = 'http://192.168.0.107:8081'
 
     public static get subjecttaken(): string {
         return API.DomainUrl + '/subjecttaken';
@@ -39,5 +39,8 @@ export class API{
 
     public static get addsub(): string {
         return API.DomainUrl + '/addsub';
+    }
+    public static get set(): string {
+        return API.DomainUrl + '/set';
     }
 }

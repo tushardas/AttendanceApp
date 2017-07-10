@@ -28,12 +28,15 @@ export class TakinwhichsubComponent implements OnInit {
     .subscribe(res => {
       this.messages = res.json();
       console.log(JSON.stringify(res));
-    })
-  
+    })  
   }
 
 
   add(){
    this.router.navigate(['addsubject']);
+  }
+
+  attendance(cid:any){
+    this.router.navigate(['attendancetaken',cid])
   }
 }

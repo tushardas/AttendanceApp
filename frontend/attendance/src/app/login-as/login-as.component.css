@@ -1,3 +1,8 @@
-md-card{
-    margin: 2%
+md-list{
+    margin: 2%;
 }
+
+html{
+    background-image: url("../images/background.jpg")
+}
+

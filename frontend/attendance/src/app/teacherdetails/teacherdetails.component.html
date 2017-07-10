@@ -1,0 +1,10 @@
+<h2>Teacher Details</h2>
+
+<md-list *ngFor = "let ele of title">
+    <md-list-item>
+       <i class="material-icons">account_circle</i> Name : {{ele.name}}
+    </md-list-item><hr/>
+    <md-list-item>
+        <i class="material-icons">email</i> Email : {{ele.email}}
+    </md-list-item><hr/>
+</md-list>

@@ -1,15 +1,18 @@
-<div class="login jumbotron center-block">
+<div class="login">
   <h1>Login</h1>
   <form role="form" >
   <div class="form-group">
-    <label for="username">Username</label>
-    <input type="text" #username class="form-control" id="username" placeholder="Username">
+    <md-input-container>
+        <input mdInput #username placeholder="Username" value="">
+    </md-input-container>
   </div>
   <div class="form-group">
-    <label for="password">Password</label>
-    <input type="password" #password class="form-control" id="password" placeholder="Password">
+    <md-input-container>
+        <input mdInput type="password" #password placeholder="Password" value="">
+    </md-input-container>
   </div>
-  <button type="submit" class="btn btn-default" (click)="login(username.value, password.value)">Submit</button>
+  <button type = "submit" class = "btn btn-success" (click)="login(username.value, password.value)">Submit</button>
+  
     <a [routerLink]="['/signup']">Click here to Signup</a>
 </form>
 </div>

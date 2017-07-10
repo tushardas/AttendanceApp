@@ -1,10 +1,14 @@
-<md-card *ngFor="let message of messages" [routerLink]="['/attendancetaken']">
+<md-card *ngFor="let message of messages" [routerLink] = "['/attendancetaken',message.id]">
     <md-card-subtitle> {{message.name}}  </md-card-subtitle>
     
-    <md-card-content> {{message.sem}} Semester
-      <br/>Total Class: {{message.total}}
+    <md-card-content> {{message.sem}} Semester  <span class="right">Total Class: {{message.total}}</span>
       </md-card-content>
 </md-card>
 
 <br/><br/><br/>
-<i class="material-icons" (click) = "add()">add_circle</i> Add another course
+<!--<div class="row add-button" (click) = "add()" style="cursor:pointer;">
+<i class="material-icons" >add_circle</i> Add another course
+</div>-->
+
+<div class="row add-button" (click)="add()" style="cursor:pointer;">
+    <md-icon>add_circle</md-icon> Add another Course </div>

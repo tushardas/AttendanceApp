@@ -3,6 +3,8 @@ import { RequestOptions, Http, Headers } from "@angular/http";
 import { API } from "app/models/api";
 import { TeacherserviceService } from "../services/teacherservice/teacherservice.service";
 import { Router } from "@angular/router";
+import { MdInputContainer } from "@angular/material"
+
 
 @Component({
   selector: 'app-addsubject',
@@ -28,8 +30,8 @@ export class AddsubjectComponent implements OnInit {
     let options = new RequestOptions({ headers: headers }); // Create a request option
     this.http.post(API.addsub,bodyString,options)
     .subscribe(res => {
-        let result = JSON.parse(res.text())[0];
-       // console.log(result);
+        let result:any = res.json();
+       
        if(result.message == "Successful"){
           this.router.navigate(['subjecttaken',TeacherserviceService.getdetails])
        }
@@ -37,5 +39,9 @@ export class AddsubjectComponent implements OnInit {
          console.log("Not successful");
        }
   })
-  }
+}
+
+cancel(){
+  this.router.navigate(['subjecttaken',TeacherserviceService.getdetails])
+}
 }
