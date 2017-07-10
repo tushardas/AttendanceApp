@@ -6,10 +6,11 @@ var Controllers = require("./controllers.js");
 var bodyParser = require('body-parser');
 app.use(bodyParser.json());
 
+var idc = 1; 
 var con = mysql.createConnection({
 	host: "localhost",
 	user: "root",
-	database: "project"
+	database: "proj"
 });
 
 con.connect(function (err) {
@@ -29,10 +30,6 @@ var server = app.listen(8081, function () {
 
 
 //get requests
-
-app.options('/studentdetails', function (req, res) {
-	console.log('options');
-});
 
 app.get('/studentdetails', function (req, res) {
 	res.header('Access-Control-Allow-Origin', '*')
@@ -81,13 +78,13 @@ app.get('/subjecttaken', function (req, res) {
 function give_subjecttaken(req, res) {
 	let id = req.url.slice(24);
 	let ress = []
-	quer = `select distinct(TotalClass) as perc from Attendance where TeacherId = '${id}'`
+	quer = `select distinct(Courseid), totalclass as perc from Attendance where TeacherId = '${id}'`
 	con.query(quer, function (err, res) {
 		if (err) throw err;
 		ress = res;
 	})
 
-	query = `select Course.CourseName, Course.Sem, Course.DepartmentNumber from Course where Course.CourseId in (select CourseId from Teaches where TeacherId='${id}')`;
+	query = `select Course.Courseid, Course.CourseName, Course.Sem, Course.DepartmentNumber from Course where Course.CourseId in (select CourseId from Teaches where TeacherId='${id}')`;
 
 	con.query(query, function (err, result) {
 		if (err) throw err;
@@ -97,6 +94,7 @@ function give_subjecttaken(req, res) {
 				name: result[i].CourseName,
 				sem: result[i].Sem,
 				total: ress[i].perc,
+				id : result[i].Courseid
 			}
 		}
 		
@@ -125,7 +123,8 @@ function give_studdetails(req, res) {
 			response[i] = {
 				regno: result[i].RegNo,
 				name: result[i].Name,
-				dummy: true
+				dummy: true,
+				id: 1
 			}
 		}
 		res.end(JSON.stringify(response));
@@ -148,7 +147,7 @@ app.get('/studentperc', function (req, res) {
 
 function givestud_details(req, res) {
 	regno = JSON.stringify(req.url).slice(20,30);
-	query = `select distinct(Teacher.Name) , Course.CourseName, Attendance.TotalAttended, Attendance.TotalClass, Attendance.TotalAttended/Attendance.TotalClass*100 as perc from Teacher,Teaches,Course, Attendance where Attendance.RegNo = '${regno}' and Attendance.CourseId = Course.CourseId and Teacher.TeacherId = Attendance.TeacherId`;
+	query = `select distinct(Teacher.Name) , Teacher.TeacherId, Course.CourseName, Attendance.TotalAttended, Attendance.TotalClass, Attendance.TotalAttended/Attendance.TotalClass*100 as perc from Teacher,Teaches,Course, Attendance where Attendance.RegNo = '${regno}' and Attendance.CourseId = Course.CourseId and Teacher.TeacherId = Attendance.TeacherId`;
 	con.query(query, function (err, result) {
 		if (err) throw err;
 		let response = [];
@@ -158,7 +157,8 @@ function givestud_details(req, res) {
 				name: result[i].Name,
 				perc: result[i].perc,
 				attended: result[i].TotalAttended,
-				class: result[i].TotalClass
+				class: result[i].TotalClass,
+				id: result[i].TeacherId
 			}
 		};
 		res.end(JSON.stringify(response));
@@ -189,19 +189,31 @@ function submit(req, res) {
 	let body = req.body;
 	for (let i = 0; i < body.length; i++) {
 		if (body[i].dummy == true) {
-			query = `update Attendance set TotalAttended=TotalAttended+1 where RegNo='${body[i].regno}' and CourseId=1 `;
+			query = `update Attendance set TotalAttended=TotalAttended+1 where RegNo='${body[i].regno}' and CourseId='${idc}' and TeacherId='${body[i].id}'`;
 			con.query(query, function (err, result) {
-			})
+				if(result.affectedRows == 0){
+					console.log("1")
+					console.log(body[i].regno)
+					query = `insert into attendance(RegNo,TeacherId,CourseId,Course_DepartmentNumber,TotalAttended,TotalClass) values('${body[i].regno}','${body[i].id}','${idc}','${body[i].department}',0,0)`	
+					con.query(query,function(err,res){
+						console.log("2")
+						query = `select distinct(TotalClass) from attendance where CourseId = '${idc}' and RegNo = '${body[i].regno}'` 
+						con.query(query,function(err,reso){
+							console.log("3");
+							query = `update attendance set TotalClass = '${reso.TotalClass}' where RegNo = '${body[i].regno}' and CourseId = '${idc}'`
+						})
+				})
+			}
+		})
 		}
 	}
-	query = `update Attendance set TotalClass=TotalClass+1 where CourseId=1 `;
+	query = `update Attendance set TotalClass=TotalClass+1 where CourseId='${idc}' `;
 	con.query(query, function (err, result) { })
 	res.send();
 }
 
 
 //signup
-
 app.options('/signup', function (req, res) {
 	res.header('Access-Control-Allow-Origin', '*')
 	res.header('Access-Control-Allow-Credentials', true)
@@ -234,12 +246,12 @@ function signup(req, res) {
 		}
 		else {
 			console.log(body.department);
-			query = `insert into student values('${body.regno}','${body.name}',6,'${body.contact}','${body.email}',1)`;
+			query = `insert into student values('${body.regno}','${body.name}','${body.semester}','${body.contact}','${body.email}',1)`;
 			con.query(query, function (err, result) {
 				if (err) {
 					query = `delete from users where username = '${body.name}'`;
 					con.query(query);
-					throw err;
+					response = [{ code: 0, result: "UnSuccessful" }]
 				}
 				else {
 					response = [{ code: 1, result: "Successful" }]
@@ -424,23 +436,16 @@ app.get('/teacherdetails', function (req, res) {
 })
 
 function giveteacher_details(req, res) {
-	console.log(req.url);
-	query = "select * from Student";
+	let n = req.url.slice(21)
+	console.log(n);
+	query = `select * from Teacher where TeacherId = '${n}'`;
 	con.query(query, function (err, result) {
 		if (err) throw err;
-		let response = [];
-		for (let i = 0; i < result.length; i++) {
-			response[i] = {
-				regno: result[i].RegNo,
-				name: result[i].Name,
-				sem: result[i].Sem,
-				phone: result[i].PhoneNumber,
-				email: result[i].email,
-				DepartmentName: result[i].DepartmentNumber,
-				dummy: true
-			}
-		};
-
+		console.log("result = " , result[0].Name,result[0].Email)
+		let response = [{
+				name: result[0].Name,
+				email: result[0].Email
+			}]
 		console.log(response);
 		res.end(JSON.stringify(response));
 
@@ -469,7 +474,8 @@ app.post('/addsub', function (req, res) {
 })
 function addsub(req, res) {
 	body = req.body;
-	let id;
+	let id,response;
+	let flag = 0;
 	query = `select count(*) as count from Course where CourseName = "${body.name}"`;
 	con.query( query, function(err, result){
 		if((result[0].count) == 0){
@@ -477,27 +483,55 @@ function addsub(req, res) {
 			con.query(query , function(err,result){})
 		}
 		query = `select courseid from Course where CourseName = "${body.name}"`
-		con.query(query, function(err,result){
-			id = result[0].courseid
-			query = `insert into teaches values("${result[0].courseid}","${body.department}","${body.id}")`
+		con.query(query, function(err,results){
+			console.log(results[0].courseid)
+			//console.log(id)
+			query = `insert into teaches values("${results[0].courseid}","${body.department}","${body.id}")`
 			con.query(query , function(err,result){
+				if(err) throw err;
+			})
 				
 				query = `select RegNo from student where sem = "${body.semester}"`
 				con.query(query , function(err,result){
 					for(let i=0;i<result.length;i++){
-						query = `insert into attendance(RegNo,TeacherId,CourseId,Course_DepartmentNumber,TotalAttended,TotalClass) values("${result[i].RegNo}","${body.id}","${id}","${body.department}",0,0)`
+						query = `insert into attendance(RegNo,TeacherId,CourseId,Course_DepartmentNumber,TotalAttended,TotalClass) values("${result[i].RegNo}","${body.id}","${results[0].courseid}","${body.department}",0,0)`
 						con.query(query,function(err,result){})
 					}
+					flag = 1;
+					response = {
+						message : "Successful"
+					}	
 				})
-				response = {
-					message: "Successful"
-				}
-				res.end(JSON.stringify(response))	
-			})
 		})
-	})
-	response = {
-		message: "Unsuccessful"
+			
+			if(flag == 0){
+		response = {
+			message : "Unsuccessful"
+		}
 	}
-	res.end(JSON.stringify(response))
+	res.end(JSON.stringify(response))	
+	}
+		
+	)
+	response = {
+						message : "Successful"
+					}	
+					res.end(JSON.stringify(response))	
+}
+
+
+
+//set idc
+
+app.get('/set', function (req, res) {
+	res.header('Access-Control-Allow-Origin', '*')
+	res.header('Access-Control-Allow-Credentials', true)
+	res.header('Access-Control-Allow-Methods', 'POST, GET, PUT, DELETE, OPTIONS')
+	res.header('Access-Control-Allow-Headers', 'Content-Type')
+	console.log('dsfdsfd');
+	set(req, res);
+})
+
+function set(req, res) {
+	idc = req.url.slice(14);
 }
